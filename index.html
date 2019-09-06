@@ -6,49 +6,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:500,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <h1>G'day, mate!</h1>
-    </header>
 
     <nav>
-        <h2>Contents:</h2>
-        <ol>
-            <li><a href="#about">Who the hell is this?</a></li>
-            <li><a href="#hobbies">Hobbies</a></li>
-            <li><a href="#else">Something else</a></li>
-        </ol>
+        <div class="nav-items">
+            <p class="logo">currency analyzer</p>
+            <p class="item">one</p>
+            <p class="item">two</p>
+            <p class="item">three</p>
+            <p class="item">four</p>
+            <p class="item">five</p>
+        </div>
     </nav>
 
     <main>
-        <div>
-            <h3 id="about">Who the hell is this?</h3>
-            <p>Yo! My name is Ivan, i'm 22 years old. I study at the SoftServe IT Academy and also at Ivano-Frankivsk
-                national university of oil and gas.</p>
+        <div class="upper-half">
+            <form action="">
+                <div class="forms">
+
+                    <div class="currency-select">
+                        <label for="select">Enter the currencies to compare:</label>
+                        <br>
+                        <br>
+                        <select name="currency" id="currencyOne" required>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="UAH">UAH</option>
+                        </select>
+                        <br>
+                        <br>
+                        <select name="currency" id="currencyTwo" required>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="UAH">UAH</option>
+                        </select>
+                        <br>
+                    </div>
+
+                    <div class="date-select">
+                        <label for="dates">Choose the dates:</label>
+                        <br>
+                        <br>
+                        <input type="date" name="date" id="dateOne" value="2019-01-01">
+                        <br>
+                        <br>
+                        <input type="date" name="date" id="dateTwo" value="2019-02-01">
+                        <br>
+                    </div>
+
+                </div>
+                <br>
+                <input type="submit" name="search" id="search" value="SEARCH">
+            </form>
+
+            <div class="rate" id="todayRate">
+                <h2>Your currency rate for today:</h2>
+
+                <h1>1 USD = 0.89 EUR</h1>
+            </div>
         </div>
 
-        <div>
-            <h3 id="hobbies">Hobbies</h3>
-            <ul>
-                <li><a href="https://en.wikipedia.org/wiki/Road_cycling" target="_blank">Road cycling</a></li>
-                <li>
-                    <p>Listen to some kinds of </p> <a href="https://en.wikipedia.org/wiki/New_wave_music"
-                        target="_blank">music</a>
-                </li>
-                <li>Surf the Web for <a href="https://en.wikipedia.org/wiki/Renewable_energy"
-                        target="_blank"><b>something</b></a> <a href="https://en.wikipedia.org/wiki/Waste_management"
-                        target="_blank"><i>interesting</i></a></li>
-            </ul>
         </div>
 
-        <div>
-            <h3 id="else">Something else to put on the page, idk.</h3>
-            <img src="car.jpg" alt="Volvo and bicycles and bicyclists">
+        <div class="lower-half" id="chart">
+            
+            <picture>
+                    <source media="(max-width: 1068px)" srcset="statisticsTablet.png">
+                    <source media="(max-width: 540px)" srcset="Charts.png">
+                    <img src="Statistics.png" alt="Currency dynamics chart">
+            </picture> 
         </div>
     </main>
 
+    <footer>
+        <div class="footer-menu">
+                <p class="foot-logo">currency analyzer</p>
+                <p class="foot-item">one</p>
+                <p class="foot-item">two</p>
+                <p class="foot-item">three</p>
+                <p class="foot-item">four</p>
+                <p class="foot-item">five</p>
+                <div class="foot-arrow"><i class="material-icons">
+                        arrow_upward
+                        </i></div>
+        </div>
+    </footer>
 </body>
 
 </html>
