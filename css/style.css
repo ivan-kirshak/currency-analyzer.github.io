@@ -26,6 +26,18 @@
     font-weight: 500;
 }
 
+a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    transition: padding 1s;
+}
+
+a:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 133, 125);
+    padding: 0.75rem;
+}
+
 .logo, .item {
     margin: 1rem;
 }
