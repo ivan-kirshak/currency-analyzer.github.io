@@ -83,16 +83,13 @@ input[type="date"] {
     padding: 0.5rem;
 }
 
-input[type="submit"] {
+#search {
     background-color: var(--bg-color);
     color: rgb(255, 255, 255);
     width: 15rem;
     padding: 0.5rem;
     border: none;
     font-family: var(--main-font);
-}
-
-form > input#search {
     margin-left: 25%;
 }
 

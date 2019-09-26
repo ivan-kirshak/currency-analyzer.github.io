@@ -34,17 +34,17 @@
                         <label for="select">Enter the currencies to compare:</label>
                         <br>
                         <br>
-                        <select name="currency" id="currencyOne" required>
+                        <select name="currency" id="currencyOne">
                             <option value="USD">USD</option>
                             <option value="EUR">EUR</option>
-                            <option value="UAH">UAH</option>
+                            <option value="GBP">GBP</option>
                         </select>
                         <br>
                         <br>
-                        <select name="currency" id="currencyTwo" required>
+                        <select name="currency" id="currencyTwo">
                             <option value="USD">USD</option>
                             <option value="EUR">EUR</option>
-                            <option value="UAH">UAH</option>
+                            <option value="GBP">GBP</option>
                         </select>
                         <br>
                     </div>
@@ -53,22 +53,23 @@
                         <label for="dates">Choose the dates:</label>
                         <br>
                         <br>
-                        <input type="date" name="date" id="dateOne" value="2019-01-01">
+                        <input type="date" name="date" id="dateOne">
                         <br>
                         <br>
-                        <input type="date" name="date" id="dateTwo" value="2019-02-01">
+                        <input type="date" name="date" id="dateTwo">
                         <br>
                     </div>
 
                 </div>
                 <br>
-                <input type="submit" name="search" id="search" value="SEARCH">
+                <input type="button" id="search" value="SEARCH">
             </form>
 
             <div class="rate" id="todayRate">
-                <h2>Your currency rate for today:</h2>
+                <h2>Your currency rate for selected dates:</h2>
 
-                <h1>1 USD = 0.89 EUR</h1>
+                <h1 id="resultOne"></h1>
+                <h1 id="resultTwo"></h1>
             </div>
         </div>
 
