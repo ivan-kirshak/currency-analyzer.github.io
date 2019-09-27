@@ -10,7 +10,9 @@ let secondDate = document.getElementById("dateTwo");
 let searchBtn = document.getElementById("search");
 let resultOne = document.getElementById("resultOne");
 let resultTwo = document.getElementById("resultTwo");
-searchBtn.addEventListener("click", function (e) {
+
+// DISPLAY RATE IN NUMBERS FOR PARTICULAR DATE
+function displayRate (e) {
     if (e.target.value == "") {
         return;
     }
@@ -28,7 +30,7 @@ searchBtn.addEventListener("click", function (e) {
         }
     }, false);
     XHR_One.open("GET", URI_One);
-    XHR_One.send()
+    XHR_One.send();
 
     // Request for second currency 
     const XHR_Two = new XMLHttpRequest();
@@ -41,9 +43,65 @@ searchBtn.addEventListener("click", function (e) {
         }
     }, false);
     XHR_Two.open("GET", URI_Two);
-    XHR_Two.send()
+    XHR_Two.send();
+}
 
-}, false)
+// CHART
+function displayChart() {
+    Highcharts.chart('chart', {
+
+        title: {
+            text: `Comparison of ${firstCurrency.value} to ${secondCurrency.value} from ${firstDate.value} to ${secondDate.value}`
+        },
+    
+        yAxis: {
+            title: {
+                text: 'Currency rate'
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle'
+        },
+    
+        plotOptions: {
+            series: {
+                label: {
+                    connectorAllowed: false
+                },
+                pointStart: 2010
+            }
+        },
+    
+        series: [{
+            name: `${firstCurrency.value}`,
+            data: []
+        }, {
+            name: `${secondCurrency.value}`,
+            data: []
+        }],
+    
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+    
+    });
+}
+
+searchBtn.addEventListener("click", displayRate, false);
+searchBtn.addEventListener("click", displayChart, false);
 
 // chart
 let chart = document.getElementById("chart");

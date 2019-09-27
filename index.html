@@ -8,8 +8,7 @@
     <title>Currency analyzer</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:500,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -76,29 +75,34 @@
         </div>
 
         <div class="lower-half" id="chart">
-            
-            <picture>
-                    <source media="(max-width: 1068px)" srcset="statisticsTablet.png">
-                    <source media="(max-width: 540px)" srcset="Charts.png">
-                    <img src="Statistics.png" alt="Currency dynamics chart">
-            </picture> 
+
+            <!--<picture>
+                <source media="(max-width: 1068px)" srcset="statisticsTablet.png">
+                <source media="(max-width: 540px)" srcset="Charts.png">
+                <img src="Statistics.png" alt="Currency dynamics chart">
+            </picture>-->
         </div>
     </main>
 
     <footer>
         <div class="footer-menu">
-                <p class="foot-logo">currency analyzer</p>
-                <p class="foot-item"><a href="https://ivan-kirshak.github.io/wpf.github.io/">one</a></p>
-                <p class="foot-item">two</p>
-                <p class="foot-item"><a href="joke.html">three</a></p>
-                <p class="foot-item">four</p>
-                <p class="foot-item"><a href="https://ivan-kirshak.github.io/booking-mockup.github.io/">five</a></p>
-                <div class="foot-arrow" id="toTopBtn"><i class="material-icons">
-                        arrow_upward
-                        </i></div>
+            <p class="foot-logo">currency analyzer</p>
+            <p class="foot-item"><a href="https://ivan-kirshak.github.io/wpf.github.io/">one</a></p>
+            <p class="foot-item">two</p>
+            <p class="foot-item"><a href="joke.html">three</a></p>
+            <p class="foot-item">four</p>
+            <p class="foot-item"><a href="https://ivan-kirshak.github.io/booking-mockup.github.io/">five</a></p>
+            <div class="foot-arrow" id="toTopBtn"><i class="material-icons">
+                    arrow_upward
+                </i></div>
         </div>
     </footer>
 
+    
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="js/main.js"></script>
 </body>
 
