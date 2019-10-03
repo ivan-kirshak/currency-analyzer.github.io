@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Currency analyzer</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:500,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -17,10 +17,10 @@
         <div class="nav-items">
             <p class="logo">currency analyzer</p>
             <p class="item"><a href="https://ivan-kirshak.github.io/wpf.github.io/">one</a></p>
-            <p class="item">two</p>
-            <p class="item"><a href="joke.html">three</a></p>
-            <p class="item">four</p>
-            <p class="item"><a href="https://ivan-kirshak.github.io/booking-mockup.github.io/">five</a></p>
+            <p class="item"><a>two</a></p>
+            <p class="item"><a>three</a></p>
+            <p class="item"><a>four</a></p>
+            <p class="item"><a>five</a></p>
         </div>
     </nav>
 
@@ -28,6 +28,17 @@
         <div class="upper-half">
             <form action="">
                 <div class="forms">
+
+                    <div class="quantity-select">
+                        <label for="quantities">How much money you want to convert?</label>
+                        <br>
+                        <br>
+                        <input type="text" name="quantity" id="quantityOne">
+                        <br>
+                        <br>
+                        <input type="text" name="quantity" id="quantityTwo">
+                        <br>
+                    </div>
 
                     <div class="currency-select">
                         <label for="select">Enter the currencies to compare:</label>
@@ -65,10 +76,10 @@
             </form>
 
             <div class="rate" id="todayRate">
-                <h2>Your currency rate for selected dates:</h2>
+                <h2 class="heading">Your currency rate for selected dates:</h2>
 
-                <h1 id="resultOne"></h1>
-                <h1 id="resultTwo"></h1>
+                <h2 id="resultOne"></h2>
+                <h2 id="resultTwo"></h2>
             </div>
         </div>
 
@@ -76,11 +87,6 @@
 
         <div class="lower-half" id="chart">
 
-            <!--<picture>
-                <source media="(max-width: 1068px)" srcset="statisticsTablet.png">
-                <source media="(max-width: 540px)" srcset="Charts.png">
-                <img src="Statistics.png" alt="Currency dynamics chart">
-            </picture>-->
         </div>
     </main>
 
@@ -88,10 +94,10 @@
         <div class="footer-menu">
             <p class="foot-logo">currency analyzer</p>
             <p class="foot-item"><a href="https://ivan-kirshak.github.io/wpf.github.io/">one</a></p>
-            <p class="foot-item">two</p>
-            <p class="foot-item"><a href="joke.html">three</a></p>
-            <p class="foot-item">four</p>
-            <p class="foot-item"><a href="https://ivan-kirshak.github.io/booking-mockup.github.io/">five</a></p>
+            <p class="foot-item"><a>two</a></p>
+            <p class="foot-item"><a>three</a></p>
+            <p class="foot-item"><a>four</a></p>
+            <p class="foot-item"><a>five</a></p>
             <div class="foot-arrow" id="toTopBtn"><i class="material-icons">
                     arrow_upward
                 </i></div>
@@ -103,7 +109,7 @@
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="js/main.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
