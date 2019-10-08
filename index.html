@@ -25,68 +25,77 @@
     </nav>
 
     <main>
+        <div class="intro-upper">
+            <h1>Currency rate dynamics analyzer</h1>
+            <hr>
+        </div>
         <div class="upper-half">
-            <form action="">
-                <div class="forms">
+            <label for="select">Select the currency to analyze:</label>
+            <br>
+            <br>
+            <select name="currency" id="currency">
+                <option value="USD">US Dollar</option>
+                <option value="EUR">Euro</option>
+                <option value="GBP">Pound Sterling</option>
+                <option value="AUD">Australian Dollar</option>
+                <option value="NZD">New Zealand Dollar</option>
+                <option value="CAD">Canadian Dollar</option>
+                <option value="NOK">Norwegian Krone</option>
+                <option value="SEK">Swedish Krone</option>
+                <option value="DKK">Danish Krone</option>
+                <option value="ZAR">South African Rand</option>
+            </select>
 
-                    <div class="quantity-select">
-                        <label for="quantities">How much money you want to convert?</label>
-                        <br>
-                        <br>
-                        <input type="text" name="quantity" id="quantityOne">
-                        <br>
-                        <br>
-                        <input type="text" name="quantity" id="quantityTwo">
-                        <br>
-                    </div>
+            <label for="dates">Select the dates:</label>
+            <br>
+            <br>
+            <input type="date" name="date" id="dateOne">
+            <br>
+            <br>
+            <input type="date" name="date" id="dateTwo">
+            <br>
+            <input type="button" id="analyze" value="ANALYZE">
+        </div>
 
-                    <div class="currency-select">
-                        <label for="select">Enter the currencies to compare:</label>
-                        <br>
-                        <br>
-                        <select name="currency" id="currencyOne">
-                            <option value="USD">USD</option>
-                            <option value="EUR">EUR</option>
-                            <option value="GBP">GBP</option>
-                        </select>
-                        <br>
-                        <br>
-                        <select name="currency" id="currencyTwo">
-                            <option value="USD">USD</option>
-                            <option value="EUR">EUR</option>
-                            <option value="GBP">GBP</option>
-                        </select>
-                        <br>
-                    </div>
+        <div class="middle-half" id="chart">
 
-                    <div class="date-select">
-                        <label for="dates">Choose the dates:</label>
-                        <br>
-                        <br>
-                        <input type="date" name="date" id="dateOne">
-                        <br>
-                        <br>
-                        <input type="date" name="date" id="dateTwo">
-                        <br>
-                    </div>
+        </div>
 
-                </div>
-                <br>
-                <input type="button" id="search" value="SEARCH">
-            </form>
-
-            <div class="rate" id="todayRate">
-                <h2 class="heading">Your currency rate for selected dates:</h2>
-
-                <h2 id="resultOne"></h2>
-                <h2 id="resultTwo"></h2>
+        <div class="intro-lower">
+                <h1>Currency converter</h1>
+                <hr>
             </div>
-        </div>
-
-        </div>
-
-        <div class="lower-half" id="chart">
-
+        <div class="lower-half">
+            <div class="converter">
+                <label for="quantity">How much money do you want to convert?</label>
+                <br>
+                <input type="text" name="quantity" id="quantity" value="1">
+                <br>
+                <label for="currency">Select the currency:</label>
+                <br>
+                <select name="currency-second" id="currencyConv">
+                        <option value="USD">US Dollar</option>
+                        <option value="EUR">Euro</option>
+                        <option value="GBP">Pound Sterling</option>
+                        <option value="AUD">Australian Dollar</option>
+                        <option value="NZD">New Zealand Dollar</option>
+                        <option value="CAD">Canadian Dollar</option>
+                        <option value="NOK">Norwegian Krone</option>
+                        <option value="SEK">Swedish Krone</option>
+                        <option value="DKK">Danish Krone</option>
+                        <option value="ZAR">South African Rand</option>
+                </select>
+                <br>
+                <label for="select">Select the date of conversion:</label>
+                <br>
+                <input type="date" name="date" id="dateConv">
+                <br>
+                <input type="button" id="convert" value="CONVERT">
+            </div>
+            <div class="rate" id="todayRate">
+                <h2 class="heading">Your currency rate for selected date:</h2>
+                <h2 id="resultConv"></h2>
+            </div>
         </div>
     </main>
 
@@ -104,7 +113,7 @@
         </div>
     </footer>
 
-    
+
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
