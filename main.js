@@ -96,11 +96,11 @@ let currencyConv = document.getElementById("currencyConv");
 let dateConv = document.getElementById("dateConv");
 let converter = document.getElementById("convert");
 let quantity = document.getElementById("quantity");
-let correctQuantity = Number(quantity.value);
 let resultOne = document.getElementById("resultConv")
 
 function convertMoney() {
     let correctDate = dateConv.value.split("-").join("");
+    let correctQuantity = Number(quantity.value);
 
     const XHR_Conv = new XMLHttpRequest();
     let URI_Conv = `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=${currencyConv.value}&date=${correctDate}&json`;
