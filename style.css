@@ -62,7 +62,7 @@ main {
     display: flex;
 }
 
-.upper-half, .converter {
+.upper-half {
     margin-top: 2rem;
     justify-content: space-around;
 }
@@ -92,6 +92,18 @@ input:focus {
     margin-top: 2rem;
 }
 
+.converter {
+    justify-content: center;
+}
+
+.btn {
+    text-align: center;
+}
+
+.one, .two {
+    margin: 1rem;
+}
+
 .rate {
     width: 80%;
     margin: 2rem auto;
@@ -102,6 +114,7 @@ input:focus {
 .rate > h2 {
     padding: 1rem;
 }
+
 /* footer */
 
 .footer-menu {
@@ -179,6 +192,10 @@ input:focus {
 
     .lower-half {
         margin-top: 0;
+    }
+
+    .one, .two {
+        margin: 0.5rem;
     }
 
     .footer-menu {

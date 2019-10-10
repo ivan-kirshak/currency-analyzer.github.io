@@ -1,0 +1,159 @@
+// declare the variables
+let currency = document.getElementById("currency");
+let firstDate = document.getElementById("dateOne");
+let secondDate = document.getElementById("dateTwo");
+let analyzeBtn = document.getElementById("analyze");
+
+let quantity = document.getElementById("quantity");
+let quantityTwo = document.getElementById("quantityTwo");
+let firstCurrency = document.getElementById("currencyConvOne");
+let secondCurrency = document.getElementById("currencyConvTwo");
+let convertBtn = document.getElementById("convert");
+
+let printResult = document.getElementById("resultConv");
+
+analyzeBtn.addEventListener("click", analyze, false);
+
+const XHR = new XMLHttpRequest();
+
+const currenciesObj = {
+    USD: "",
+    EUR: "",
+    GBP: "",
+    AUD: "",
+    NZD: "",
+    CAD: "",
+    NOK: "",
+    SEK: "",
+    DKK: "",
+    ZAR: "",
+    CNY: "",
+    JPY: "",
+    KRW: ""
+};
+
+function converter(e) {
+    let valueOne = quantity.value;
+    let valueTwo = quantityTwo;
+    let currOne = firstCurrency.value;
+    let currTwo = secondCurrency.value;
+    if (currOne == "UAH") {
+        valueTwo.value = (valueOne / currenciesObj[currTwo]).toFixed(2);
+    } else if (currTwo == "UAH") {
+        valueTwo.value = (valueOne * currenciesObj[currOne]).toFixed(2);
+    }
+}
+
+convertBtn.addEventListener("click", converter, false);
+
+async function analyze(e) {
+    startDate = firstDate.value;
+    endDate = secondDate.value;
+
+    chartOptions.series[0].name = currency.value;
+    chartOptions.xAxis.categories = [];
+    chartOptions.series[0].data = [];
+
+    startDate = Date.parse(startDate);
+    endDate = Date.parse(endDate);
+
+    for (let i = startDate; i <= endDate; i = i + 24 * 60 * 60 * 1000) {
+        let URI = `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=${
+            currency.value
+            }&date=${new Date(i)
+            .toISOString()
+            .substr(0, 10)
+            .split("-")
+            .join("")}&json`;
+            let response = await fetch(URI);
+            let data = await response.json();
+            let itemObj = {
+            rate: data[0].rate,
+            exchangedate: data[0].exchangedate
+            };
+            chartOptions.series[0].data.push(Number(itemObj.rate.toFixed(2)));
+            chartOptions.xAxis.categories.push(new Date(i).toGMTString().substr(5, 6));
+            chartOptions.title.text = `Currency rate of ${currency.value} from ${firstDate.value} to ${secondDate.value}`;
+            chartOptions.subtitle.text = `Data provided via <a href="https://www.bank.gov.ua/" >National Bank Of Ukraine</a>`;
+        }
+        Highcharts.chart("chart", chartOptions);
+    
+}
+
+async function conversionProcess (e) {
+    let conversionUri = `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json`;
+    let response = await fetch(conversionUri);
+    let data = await response.json();
+
+    for (let key in data) {
+        if (currenciesObj.hasOwnProperty(data[key].cc)) {
+            currenciesObj[data[key].cc] = data[key].rate.toFixed(2);
+        }
+    }
+
+    printResult.innerHTML = `${quantity.value} ${firstCurrency.value} = ${quantityTwo.value} ${secondCurrency.value}`;
+}
+
+function onLoad() {
+    conversionProcess();
+    }
+    
+window.onload = onLoad;
+
+let chartOptions = {
+    title: {
+        text: ""
+    },
+
+    subtitle: {
+        text: ""
+    },
+    xAxis: {
+        categories: []
+    },
+    yAxis: {
+        title: {
+        text: "Currency rate"
+        }
+    },
+    legend: {
+        layout: "vertical",
+        align: "right",
+        verticalAlign: "middle"
+    },
+
+    // plotOptions: {
+    //   series: {
+    //     label: {
+    //       connectorAllowed: false
+    //     },
+    //     pointStart: 0
+    //   }
+    // },
+
+    series: [
+        {
+        name: "",
+        data: []
+        }
+    ],
+
+    responsive: {
+        rules: [
+        {
+            condition: {
+            maxWidth: 500
+            },
+            chartOptions: {
+            legend: {
+                layout: "horizontal",
+                align: "center",
+                verticalAlign: "bottom"
+            }
+            }
+        }
+        ]
+    }
+};
+
+Highcharts.chart("chart", chartOptions);

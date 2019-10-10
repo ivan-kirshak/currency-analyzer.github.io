@@ -44,6 +44,9 @@
                 <option value="SEK">Swedish Krone</option>
                 <option value="DKK">Danish Krone</option>
                 <option value="ZAR">South African Rand</option>
+                <option value="CNY">Chinese Yuan</option>
+                <option value="JPY">Japanese Yena</option>
+                <option value="KRW">South Korean Won</option>
             </select>
 
             <label for="dates">Select the dates:</label>
@@ -62,18 +65,26 @@
         </div>
 
         <div class="intro-lower">
-                <h1>Currency converter</h1>
-                <hr>
-            </div>
+            <h1>Currency converter</h1>
+            <hr>
+        </div>
         <div class="lower-half">
             <div class="converter">
-                <label for="quantity">How much money do you want to convert?</label>
+                <div class="one">
+                    <label for="quantity">How much money do you want to convert?</label>
+                    <br>
+                    <input type="text" name="quantity" id="quantity" value="1">
+                    <br>
+                    <label for="quantity">Your result is:</label>
+                    <br>
+                    <input type="text" name="quantity" id="quantityTwo">
+                </div>
                 <br>
-                <input type="text" name="quantity" id="quantity" value="1">
-                <br>
-                <label for="currency">Select the currency:</label>
-                <br>
-                <select name="currency-second" id="currencyConv">
+
+                <div class="two">
+                    <label for="currency">Select the currency:</label>
+                    <br>
+                    <select name="currency-second" id="currencyConvOne">
                         <option value="USD">US Dollar</option>
                         <option value="EUR">Euro</option>
                         <option value="GBP">Pound Sterling</option>
@@ -84,18 +95,41 @@
                         <option value="SEK">Swedish Krone</option>
                         <option value="DKK">Danish Krone</option>
                         <option value="ZAR">South African Rand</option>
-                </select>
-                <br>
-                <label for="select">Select the date of conversion:</label>
-                <br>
-                <input type="date" name="date" id="dateConv">
-                <br>
+                        <option value="CNY">Chinese Yuan</option>
+                        <option value="JPY">Japanese Yena</option>
+                        <option value="KRW">South Korean Won</option>
+                        <option value="UAH">Ukrainian Hryvnia</option>
+                    </select>
+                    <br>
+                    <label for="select">Select the currency to convert into:</label>
+                    <br>
+                    <select name="currency-second" id="currencyConvTwo">
+                        <option value="USD">US Dollar</option>
+                        <option value="EUR">Euro</option>
+                        <option value="GBP">Pound Sterling</option>
+                        <option value="AUD">Australian Dollar</option>
+                        <option value="NZD">New Zealand Dollar</option>
+                        <option value="CAD">Canadian Dollar</option>
+                        <option value="NOK">Norwegian Krone</option>
+                        <option value="SEK">Swedish Krone</option>
+                        <option value="DKK">Danish Krone</option>
+                        <option value="ZAR">South African Rand</option>
+                        <option value="CNY">Chinese Yuan</option>
+                        <option value="JPY">Japanese Yena</option>
+                        <option value="KRW">South Korean Won</option>
+                        <option value="UAH">Ukrainian Hryvnia</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="btn">
                 <input type="button" id="convert" value="CONVERT">
             </div>
-            <div class="rate" id="todayRate">
-                <h2 class="heading">Your currency rate for selected date:</h2>
-                <h2 id="resultConv"></h2>
-            </div>
+        </div>
+        <div class="rate" id="todayRate">
+            <h2 class="heading">Your currency conversion result is:</h2>
+            <h2 id="resultConv"></h2>
+        </div>
         </div>
     </main>
 
@@ -118,7 +152,9 @@
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <script src="main.js"></script>
+    <!--<script src="main.js"></script>-->
+    <script src="app.js"></script>
+
 </body>
 
 </html>
