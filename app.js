@@ -3,6 +3,7 @@ let currency = document.getElementById("currency");
 let firstDate = document.getElementById("dateOne");
 let secondDate = document.getElementById("dateTwo");
 let analyzeBtn = document.getElementById("analyze");
+let chartError = document.getElementById("chartError");
 /*
 let quantity = document.getElementById("quantity");
 let quantityTwo = document.getElementById("quantityTwo");
@@ -47,8 +48,8 @@ convertBtn.addEventListener("click", converter, false);
 */
 
 async function analyze(e) {
-    startDate = firstDate.value;
-    endDate = secondDate.value;
+    let startDate = firstDate.value;
+    let endDate = secondDate.value;
 
     chartOptions.series[0].name = currency.value;
     chartOptions.xAxis.categories = [];
@@ -57,19 +58,22 @@ async function analyze(e) {
     startDate = Date.parse(startDate);
     endDate = Date.parse(endDate);
 
-    for (let i = startDate; i <= endDate; i = i + 24 * 60 * 60 * 1000) {
-        let URI = `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=${
-            currency.value
-            }&date=${new Date(i)
-            .toISOString()
-            .substr(0, 10)
-            .split("-")
-            .join("")}&json`;
+    if (firstDate.value === "" || secondDate.value === "") {
+        chartError.innerHTML = `<h3 class="error">Please, select the dates of analysis.</h3>`;
+    } else {
+        for (let i = startDate; i <= endDate; i = i + 24 * 60 * 60 * 1000) {
+            let URI = `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=${
+                currency.value
+                }&date=${new Date(i)
+                    .toISOString()
+                    .substr(0, 10)
+                    .split("-")
+                    .join("")}&json`;
             let response = await fetch(URI);
             let data = await response.json();
             let itemObj = {
-            rate: data[0].rate,
-            exchangedate: data[0].exchangedate
+                rate: data[0].rate,
+                exchangedate: data[0].exchangedate
             };
             chartOptions.series[0].data.push(Number(itemObj.rate.toFixed(2)));
             chartOptions.xAxis.categories.push(new Date(i).toGMTString().substr(5, 6));
@@ -77,7 +81,9 @@ async function analyze(e) {
             chartOptions.subtitle.text = `Data provided via <a href="https://www.bank.gov.ua/" >National Bank Of Ukraine</a>`;
         }
         Highcharts.chart("chart", chartOptions);
-    
+        chartError.innerHTML = "";
+    }
+
 }
 
 /*
@@ -112,17 +118,24 @@ function makeConversion() {
     let correctedDate = dateConv.value.split("-").join("");
     let correctedQuantity = Number(quantityConv.value);
     let date = new Date(dateConv.value).toDateString();
-
-    const XHR_Conv = new XMLHttpRequest()
-    let URI_Conv = `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=${currencyConv.value}&date=${correctedDate}&json`;
-    XHR_Conv.addEventListener("readystatechange", function() {
-        if((XHR_Conv.readyState === 4) && (XHR_Conv.status === 200)) {
-            let result = JSON.parse(XHR_Conv.responseText);
-            resConv.innerHTML = `${correctedQuantity} ${currencyConv.value} = ${correctedQuantity * result[0].rate.toFixed(2)} hryvnias. (${date})`;
-        }
-    }, false);
-    XHR_Conv.open("GET", URI_Conv);
-    XHR_Conv.send();
+    if (dateConv.value === "") {
+        resConv.innerText = "Please print the date of currency conversion";
+        resConv.style.color = "rgb(255, 0, 0)";
+    } else {
+        const XHR_Conv = new XMLHttpRequest()
+        let URI_Conv = `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=${
+            currencyConv.value}&date=${correctedDate}&json`;
+        XHR_Conv.addEventListener("readystatechange", function () {
+            if ((XHR_Conv.readyState === 4) && (XHR_Conv.status === 200)) {
+                let result = JSON.parse(XHR_Conv.responseText);
+                resConv.innerHTML = `${correctedQuantity} ${currencyConv.value} = 
+                ${correctedQuantity * result[0].rate.toFixed(2)} hryvnias. (${date})`;
+                resConv.style.color = "rgb(0, 0, 0)";
+            }
+        }, false);
+        XHR_Conv.open("GET", URI_Conv);
+        XHR_Conv.send();
+    }
 }
 
 btnConv.addEventListener("click", makeConversion, false);
@@ -140,7 +153,7 @@ let chartOptions = {
     },
     yAxis: {
         title: {
-        text: "Currency rate"
+            text: "Currency rate"
         }
     },
     legend: {
@@ -162,25 +175,25 @@ let chartOptions = {
 
     series: [
         {
-        name: "",
-        data: []
+            name: "",
+            data: []
         }
     ],
 
     responsive: {
         rules: [
-        {
-            condition: {
-            maxWidth: 500
-            },
-            chartOptions: {
-            legend: {
-                layout: "horizontal",
-                align: "center",
-                verticalAlign: "bottom"
+            {
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: "horizontal",
+                        align: "center",
+                        verticalAlign: "bottom"
+                    }
+                }
             }
-            }
-        }
         ]
     }
 };
