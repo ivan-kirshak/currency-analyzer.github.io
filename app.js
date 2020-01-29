@@ -3,15 +3,14 @@ let currency = document.getElementById("currency");
 let firstDate = document.getElementById("dateOne");
 let secondDate = document.getElementById("dateTwo");
 let analyzeBtn = document.getElementById("analyze");
-
+/*
 let quantity = document.getElementById("quantity");
 let quantityTwo = document.getElementById("quantityTwo");
 let firstCurrency = document.getElementById("currencyConvOne");
 let secondCurrency = document.getElementById("currencyConvTwo");
 let convertBtn = document.getElementById("convert");
-
 let printResult = document.getElementById("resultConv");
-
+*/
 analyzeBtn.addEventListener("click", analyze, false);
 
 const XHR = new XMLHttpRequest();
@@ -31,7 +30,7 @@ const currenciesObj = {
     JPY: "",
     KRW: ""
 };
-
+/*
 function converter(e) {
     let valueOne = quantity.value;
     let valueTwo = quantityTwo;
@@ -45,6 +44,7 @@ function converter(e) {
 }
 
 convertBtn.addEventListener("click", converter, false);
+*/
 
 async function analyze(e) {
     startDate = firstDate.value;
@@ -80,6 +80,7 @@ async function analyze(e) {
     
 }
 
+/*
 async function conversionProcess (e) {
     let conversionUri = `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json`;
     let response = await fetch(conversionUri);
@@ -99,6 +100,32 @@ function onLoad() {
     }
     
 window.onload = onLoad;
+*/
+
+let quantityConv = document.getElementById("quantity");
+let currencyConv = document.getElementById("currencyConvTwo");
+let dateConv = document.getElementById("convDate");
+let btnConv = document.getElementById("convert");
+let resConv = document.getElementById("resultConv");
+
+function makeConversion() {
+    let correctedDate = dateConv.value.split("-").join("");
+    let correctedQuantity = Number(quantityConv.value);
+    let date = new Date(dateConv.value).toDateString();
+
+    const XHR_Conv = new XMLHttpRequest()
+    let URI_Conv = `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=${currencyConv.value}&date=${correctedDate}&json`;
+    XHR_Conv.addEventListener("readystatechange", function() {
+        if((XHR_Conv.readyState === 4) && (XHR_Conv.status === 200)) {
+            let result = JSON.parse(XHR_Conv.responseText);
+            resConv.innerHTML = `${correctedQuantity} ${currencyConv.value} = ${correctedQuantity * result[0].rate.toFixed(2)} hryvnias. (${date})`;
+        }
+    }, false);
+    XHR_Conv.open("GET", URI_Conv);
+    XHR_Conv.send();
+}
+
+btnConv.addEventListener("click", makeConversion, false);
 
 let chartOptions = {
     title: {
@@ -122,14 +149,16 @@ let chartOptions = {
         verticalAlign: "middle"
     },
 
-    // plotOptions: {
-    //   series: {
-    //     label: {
-    //       connectorAllowed: false
-    //     },
-    //     pointStart: 0
-    //   }
-    // },
+    /*
+    plotOptions: {
+      series: {
+        label: {
+          connectorAllowed: false
+        },
+        pointStart: 0
+      }
+    },
+    */
 
     series: [
         {
@@ -157,3 +186,13 @@ let chartOptions = {
 };
 
 Highcharts.chart("chart", chartOptions);
+
+// To Top Btn
+let toTopBtn = document.getElementById("toTopBtn");
+function toTop() {
+    let top = document.querySelector(".intro-upper");
+    top.scrollIntoView({
+        behavior: "smooth"
+    });
+}
+toTopBtn.addEventListener("click", toTop, false);
